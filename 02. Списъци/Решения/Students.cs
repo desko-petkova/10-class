@@ -57,8 +57,32 @@
             Console.WriteLine("-------------------");
             Console.WriteLine("Избери индекс: ");
 
-            int removeIndex = int.Parse(Console.ReadLine());
+           int removeIndex;
 
+                // повтаряме, докато не се въведе валидно число в диапазона
+                while (true)
+                {
+                    string input = Console.ReadLine();
+
+                    // опитваме да преобразуваме текста в число
+                    if (int.TryParse(input, out removeIndex))
+                    {
+                        // проверяваме дали индексът е в диапазона 1..Names.Count
+                        if (removeIndex >= 1 && removeIndex <= Names.Count)
+                        {
+                            break; // излизаме от цикъла, защото е валиден
+                        }
+                        else
+                        {
+                            Console.WriteLine($"Моля въведи число между 1 и {Names.Count}:");
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("Моля въведи валидно число:");
+                    }
+                }
+			
             Names.RemoveAt(removeIndex - 1);
             Grades.RemoveAt(removeIndex - 1);
 
